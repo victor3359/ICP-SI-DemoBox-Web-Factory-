@@ -57,7 +57,7 @@ $(document).ready(function() {
             stateA = '綠';
             colorA = 'green';
         }else{
-            stateA = '滅';
+            stateA = 'Off';
             colorA = 'black';
         }
         if(data['B_R']){
@@ -70,7 +70,7 @@ $(document).ready(function() {
             stateB = '綠';
             colorB = 'green';
         }else{
-            stateB = '滅';
+            stateB = 'Off';
             colorB = 'black';
         }
         $('#Light_State1').html(stateA).css('color', colorA);
@@ -235,7 +235,7 @@ $(document).ready(function() {
     });
 
     $('#Light_Switch1').click(function () {
-        if($('#Light_State1').html() == '滅'){
+        if($('#Light_State1').html() == 'Off'){
             socket.emit('LightChangeA', 1);
             iziToast.show({
                 title:'燈號測試',
@@ -275,7 +275,7 @@ $(document).ready(function() {
     });
 
     $('#Light_Switch2').click(function () {
-        if($('#Light_State2').html() == '滅'){
+        if($('#Light_State2').html() == 'Off'){
             socket.emit('LightChangeB', 1);
             iziToast.show({
                 title:'燈號測試',
