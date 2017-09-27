@@ -1,0 +1,190 @@
+﻿<!doctype html>
+<html class="no-js" lang="en">
+
+
+<!-- Mirrored from demo.lorvent.com/demo_admire/admire_html/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 01 Sep 2017 07:00:22 GMT -->
+<head>
+    <meta charset="UTF-8">
+    <title>Ho̍k House</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="img_new/hok_house_nb.png"/>
+
+    <!--global styles-->
+    <link type="text/css" rel="stylesheet" href="css_new/stylesheet_table.css"/>
+    <link type="text/css" rel="stylesheet" href="css_new/stylesheet_p_notify.css"/>
+    <link type="text/css" rel="stylesheet" href="css_new/stylesheet_buttons.css">
+    <link type="text/css" rel="stylesheet" href="css_new/stylesheet_index.css">
+    <!-- end of global styles-->
+
+    <link type="text/css" rel="stylesheet" href="#" id="skin_change"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+    <script src="javascripts/pages/HokSocket.js"></script>
+
+</head>
+
+<body class="body">
+<div class="preloader" style=" position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 100000;
+  backface-visibility: hidden;
+  background: #ffffff;">
+    <div class="preloader_img" style="width: 200px;
+  height: 200px;
+  position: absolute;
+  left: 48%;
+  top: 48%;
+  background-position: center;
+z-index: 999999">
+        <img src="img/loader.gif.pagespeed.ce.6uBJi4bcCR.gif" style=" width: 40px;" alt="loading...">
+    </div>
+</div>
+<div class="bg-dark" id="wrap">
+    <div id="top">
+        <!-- .navbar -->
+        <nav class="navbar navbar-static-top">
+            <div class="container-fluid m-0">
+                <a class="navbar-brand float-left text-center" href="error">
+                    <h4 class="text-white"><img src="img_new/hok_house_nb.png" class="admin_img" alt="logo"> Demobox</h4>
+                </a>
+                <div class="menu">
+                    <span class="toggle-left" id="menu-toggle">
+                        <i class="fa fa-bars text-white"></i>
+                    </span>
+                </div>
+            </div>
+
+            <!-- /.container-fluid --> </nav>
+        <!-- /.navbar -->
+        <!-- /.head --> </div>
+    <!-- /#top -->
+    <div class="wrapper">
+        <div id="left">
+            <div class="media user-media bg-dark dker">
+                <div class="user-media-toggleHover">
+                    <span class="fa fa-user"></span>
+                </div>
+                <div class="user-wrapper bg-dark">
+                    <a class="user-link" href="#">
+                        <img class="media-object img-thumbnail user-img rounded-circle admin_img3" alt="User Picture"
+                             src="img_new/Hok_house_nato.jpg">
+                        <h4 class="text-white user-info">Alerm</h4>
+                    </a>
+                </div>
+            </div>
+            <!-- #menu -->
+            <ul id="menu" class="bg-blue dker">
+                <li>
+                    <a href="/">
+                        <i class="iconFactory"></i> &nbsp; Factory
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="record">
+                        <i class="iconAlarm"></i> &nbsp; Record
+                    </a>
+                </li>
+            </ul>
+            <!-- /#menu -->
+        </div>
+        <!-- /#left -->
+        <div id="content" class="bg-container">
+            <header class="head">
+                <div class="main-bar">
+                    <div class="row">
+                        <div class="col-6">
+                            <h4 class="m-t-5">
+                                <i class="fa fa-book"></i>
+                                生產紀錄
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <div class="outer">
+                <div class="inner bg-container">
+                    <div class="card m-t-35">
+                        <div class="card-header bg-white">
+                            <i class="fa fa-table"> Factory Record</i>
+                        </div>
+                        <div class="card-block">
+                            <div class="m-t-35">
+                                <button id="del_button" class="btn btn-primary"> Delete Selected Row </button>
+                                <div class="m-t-25">
+                                    <table id="example_demo" class="table table-hover table-bordered ">
+                                        <thead>
+                                        <tr>
+                                            <th>Index</th>
+                                            <th class="hidden-xs">Target</th>
+                                            <th class="hidden-xs">Produced</th>
+                                            <th class="hidden-xs">Status</th>
+                                            <th class="hidden-xs">Voltage</th>
+                                            <th class="hidden-xs">Current</th>
+                                            <th class="hidden-xs">Power</th>
+                                            <th class="hidden-xs">Humidity</th>
+                                            <th class="hidden-xs">Temp</th>
+                                            <th class="hidden-xs">Alarm Temp</th>
+                                            <th class="hidden-xs">Datetime</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- # right side -->
+</div>
+<!-- /#wrap -->
+<!-- global scripts-->
+<script type="text/javascript" src="js/components.js"></script>
+<script type="text/javascript" src="js/custom.js"></script>
+<!--end of global scripts-->
+<!--  plugin scripts -->
+<script type="text/javascript" src="vendors/countUp.js/js/countUp.min.js"></script>
+<script type="text/javascript" src="vendors/flip/js/jquery.flip.min.js"></script>
+<script type="text/javascript" src="js/pluginjs/jquery.sparkline.js"></script>
+<script type="text/javascript" src="vendors/chartist/js/chartist.min.js"></script>
+<script type="text/javascript" src="js/pluginjs/chartist-tooltip.js"></script>
+<script type="text/javascript" src="vendors/swiper/js/swiper.min.js"></script>
+<script type="text/javascript" src="vendors/circliful/js/jquery.circliful.min.js"></script>
+<script type="text/javascript" src="vendors/flotchart/js/jquery.flot.js"></script>
+<script type="text/javascript" src="vendors/flotchart/js/jquery.flot.resize.js"></script>
+<!--end of plugin scripts-->
+
+
+<!-- plugin scripts -->
+<script type="text/javascript" src="vendors/select2/js/select2.js.pagespeed.jm.Eugd1Y0BmV.js"></script>
+<script src="vendors/datatables/js/jquery.dataTables.min.js%2bdataTables.bootstrap.min.js.pagespeed.jc.3hPp-oKyFV.js"></script><script>eval(mod_pagespeed_ohALzKQc7L);</script>
+<script>eval(mod_pagespeed_IXQJQeia87);</script>
+<!-- end plugin scripts -->
+<script src="vendors/javascript_p_notify.js"></script>
+<script>eval(mod_pagespeed_PgBWTwAB3I);</script>
+<script>eval(mod_pagespeed_37O3ld5zoQ);</script>
+<script>eval(mod_pagespeed_ZzmY5mTsAs);</script>
+<script>eval(mod_pagespeed_jVUCZO33_F);</script>
+<script>eval(mod_pagespeed_IZ2qoLVjJy);</script>
+<script>eval(mod_pagespeed_5QWOUcvZEj);</script>
+<script>eval(mod_pagespeed_vHxvsCIMRH);</script>
+<script>eval(mod_pagespeed_BityH3aJ10);</script>
+<script>eval(mod_pagespeed_WX_WC_ZJ7M);</script>
+<script>eval(mod_pagespeed_0hM1ZEEq1u);</script>
+<script type="text/javascript" src="js/pages/p_notify.js.pagespeed.jm.E2cU5JtMgK.js"></script>
+<!--Page level scripts-->
+<script type="text/javascript" src="javascripts/pages/error.js">
+</script>
+<!-- end of global scripts-->
+</body>
+
+<!-- Mirrored from demo.lorvent.com/demo_admire/admire_html/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 01 Sep 2017 07:01:26 GMT -->
+</html>

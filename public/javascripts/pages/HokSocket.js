@@ -1,0 +1,1 @@
+var socket = io.connect('http://192.168.200.20:10000');
