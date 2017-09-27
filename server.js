@@ -300,6 +300,21 @@ function Update(){
         });
     });
     mongodb.connect(url, function(err, db){
+        //todo: Update Shock Data
+        db.collection('MeterInformation').find({Type:'Shock'}).sort({_id: -1}).limit(1).toArray(function (mongoError, objects) {
+            if (mongoError) throw mongoError;
+            if(objects[0]['Shock']){
+                var data={
+                    ID: objects[0]['Shock'],
+                    TIME: date.format(objects[0]['sysdatetime'], 'YYYY-MM-DD HH:mm:ss')
+                };
+                socket.emit('shock', data);
+            }
+            console.log(objects[0]['Shock']);
+            db.close();
+        });
+    });
+    mongodb.connect(url, function(err, db){
         //todo: Update Motor Data
         db.collection('MeterInformation').find({Type:'Motor'}).sort({_id: -1}).limit(1).toArray(function (mongoError, objects) {
             if (mongoError) throw mongoError;
@@ -368,22 +383,6 @@ function Update(){
         });
     });
 }
-/*
-function UpdateChart(){
-    mongodb.connect(url, function(err, db){
-        //todo: Update Room - RealTime Chart
-        db.collection('MeterInformation').find({Type:'Power'}).sort({_id: -1}).limit(60).toArray(function (mongoError, objects) {
-            if (mongoError) throw mongoError;
-            var data = {
-                KW: objects[0]['kW_tot'],
-                TIME: date.format(objects[0]['sysdatetime'], 'YYYY-MM-DD HH:mm:ss')
-            };
-            socket.emit('factory_chart', data);
-            db.close();
-        });
-    });
-}
-*/
 
 app.use('/', route);
 //Start the server
@@ -410,13 +409,16 @@ socket.sockets.on('connection', function (socket) {
     console.log('Socket Client Connected.');
     socket.on('TESTMode', function(data){
         console.log('TEST Mode ' + data);
-        client.publish('ICPSI/DemoBOX/FactoryV3/Mode/TEST', data);
         if(data == 'OFF'){
             client.publish('ICPSI/DemoBOX/FactoryV3/Mode/TEST/WarningLight1', 'OFF');
             client.publish('ICPSI/DemoBOX/FactoryV3/Mode/TEST/WarningLight2', 'OFF');
             client.publish('ICPSI/DemoBOX/FactoryV3/Mode/TEST/MOTOR1', 'OFF');
             client.publish('ICPSI/DemoBOX/FactoryV3/Mode/TEST/MOTOR2', 'OFF');
+            setTimeout(function(){
+                client.publish('ICPSI/DemoBOX/FactoryV3/Mode/TEST', 'OFF');
+            }, 1000);
         }else{
+            client.publish('ICPSI/DemoBOX/FactoryV3/Mode/TEST', 'ON');
             client.publish('ICPSI/DemoBOX/FactoryV3/Mode/TEST/WarningLight1', 'R_ON');
             client.publish('ICPSI/DemoBOX/FactoryV3/Mode/TEST/WarningLight1', 'Y_OFF');
             client.publish('ICPSI/DemoBOX/FactoryV3/Mode/TEST/WarningLight1', 'G_OFF');

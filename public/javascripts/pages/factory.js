@@ -90,6 +90,40 @@ $(document).ready(function() {
         }
     });
 
+    var oldIntervalShock = null;
+    socket.on('shock', function(data){
+        console.log(data['ID']);
+        var machine;
+        switch(data){
+            case 1:
+                machine = 'A';
+                break;
+            case 2:
+                machine = 'B';
+                break;
+            default:
+                break;
+        }
+        if(data['ID']){
+            if(!oldIntervalShock) {
+                oldIntervalShock = setInterval(function () {
+                    new PNotify({
+                        title: '機台故障警報',
+                        text: '機台 ' + machine + ' 發生故障！<br>請檢視機台狀況。' + '<br>' + data['TIME'],
+                        type: 'error',
+                        after_init:
+                            function (notice) {
+                                notice.attention('rubberBand');
+                            }
+                    });
+                }, 3000);
+            }
+        }else{
+            clearInterval(oldInterval);
+            oldIntervalShock = null;
+        }
+    });
+
     var oldInterval = null;
     socket.on('factory_TPD', function (data) {
         if(TEMPdata[0]) {
